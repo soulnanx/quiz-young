@@ -67,6 +67,37 @@ export function Quiz() {
   const allAnswered = answers.size === totalQuestions;
   const canProceed = currentValue !== null;
 
+  // Atalhos de teclado: Espaço = Próxima, Backspace = Anterior
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      // Só funciona na fase quiz
+      if (phase !== 'quiz') return;
+      
+      // Não interfere com inputs/textareas
+      const target = e.target as HTMLElement;
+      if (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA') return;
+      
+      // Espaço = Próxima (ou Ver Resultado se for a última)
+      if (e.code === 'Space') {
+        e.preventDefault();
+        if (isLastQuestion) {
+          if (allAnswered) handleFinish();
+        } else {
+          if (canProceed) handleNext();
+        }
+      }
+      
+      // Backspace = Anterior
+      if (e.code === 'Backspace') {
+        e.preventDefault();
+        if (currentIndex > 0) handlePrevious();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [phase, isLastQuestion, allAnswered, canProceed, currentIndex]);
+
   // Tela de instruções
   if (phase === 'instructions') {
     return (
