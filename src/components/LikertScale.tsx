@@ -24,16 +24,16 @@ export function LikertScale({ value, onChange }: LikertScaleProps) {
             type="button"
             onClick={() => onChange(item.value as LikertValue)}
             className={`
-              relative min-h-[100px] p-3 rounded-lg border-2 transition-all
-              flex flex-col items-center justify-center
+              relative h-[110px] p-3 rounded-lg border-2 transition-all
+              flex flex-col items-center justify-center text-center
               ${value === item.value
                 ? 'border-blue-600 bg-blue-50 text-blue-900 shadow-md'
                 : 'border-gray-300 bg-white hover:border-blue-400 hover:bg-gray-50'
               }
             `}
           >
-            <div className="text-2xl font-bold mb-2">{item.short}</div>
-            <div className="text-xs text-gray-600 leading-tight text-center">
+            <div className="text-2xl font-bold mb-1 shrink-0">{item.short}</div>
+            <div className="text-xs text-gray-600 leading-tight flex-1 flex items-center justify-center">
               {item.label}
             </div>
           </button>
