@@ -24,27 +24,20 @@ export function LikertScale({ value, onChange }: LikertScaleProps) {
             type="button"
             onClick={() => onChange(item.value as LikertValue)}
             className={`
-              relative p-3 rounded-lg border-2 transition-all
+              relative min-h-[100px] p-3 rounded-lg border-2 transition-all
+              flex flex-col items-center justify-center
               ${value === item.value
                 ? 'border-blue-600 bg-blue-50 text-blue-900 shadow-md'
                 : 'border-gray-300 bg-white hover:border-blue-400 hover:bg-gray-50'
               }
             `}
           >
-            <div className="text-2xl font-bold mb-1">{item.short}</div>
-            <div className="text-xs text-gray-600 leading-tight hidden sm:block">
+            <div className="text-2xl font-bold mb-2">{item.short}</div>
+            <div className="text-xs text-gray-600 leading-tight text-center">
               {item.label}
             </div>
           </button>
         ))}
-      </div>
-      {/* Labels móveis para telas pequenas */}
-      <div className="sm:hidden">
-        {value && (
-          <div className="text-center text-sm text-gray-700 mt-2">
-            {labels.find(l => l.value === value)?.label}
-          </div>
-        )}
       </div>
     </div>
   );
