@@ -44,7 +44,7 @@ export function Result() {
   return (
     <div className="min-h-screen bg-gray-50">
       <header className="bg-white shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 py-6">
+        <div className="max-w-7xl mx-auto px-4 py-4">
           <nav className="flex items-center gap-2 text-sm">
             <Link to="/" className="text-blue-600 hover:text-blue-800">
               Home
@@ -55,51 +55,48 @@ export function Result() {
         </div>
       </header>
 
-      <main className="max-w-7xl mx-auto px-4 py-8">
-        {/* Cabeçalho do resultado */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-4">Resultado da Avaliação</h1>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <main className="max-w-7xl mx-auto px-4 py-6 md:py-8">
+        {/* Cabeçalho compacto com score em destaque */}
+        <div className="bg-gradient-to-br from-blue-600 to-blue-700 rounded-xl shadow-lg p-6 mb-6 text-white">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
             <div>
-              <div className="text-sm text-gray-600">Data da avaliação</div>
-              <div className="text-lg font-semibold text-gray-900">
-                {formatDate(result.answeredAt)}
-              </div>
+              <h1 className="text-2xl md:text-3xl font-bold mb-2">Resultado da Avaliação</h1>
+              <div className="text-blue-100 text-sm">{formatDate(result.answeredAt)}</div>
             </div>
-            <div>
-              <div className="text-sm text-gray-600">Score total</div>
-              <div className="text-lg font-semibold text-gray-900">
-                {formatScore(result.totalMean)} / 6.00
+            <div className="flex items-center gap-6">
+              <div className="text-center">
+                <div className="text-4xl md:text-5xl font-bold">{formatScore(result.totalMean)}</div>
+                <div className="text-blue-100 text-sm">Score Total</div>
               </div>
-            </div>
-            <div>
-              <div className="text-sm text-gray-600">Esquemas significativos</div>
-              <div className="text-lg font-semibold text-gray-900">
-                {significantSchemas.length} de 18
+              <div className="text-center">
+                <div className="text-4xl md:text-5xl font-bold">{significantSchemas.length}</div>
+                <div className="text-blue-100 text-sm">Esquemas Significativos</div>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Botões de exportação */}
-        <div className="flex flex-wrap gap-3 mb-8">
+        {/* Botões de ação compactos */}
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-8">
           <button
             onClick={handleExportPdf}
-            className="px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors font-medium flex items-center gap-2"
+            className="px-4 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors font-medium flex items-center justify-center gap-2 text-sm"
           >
             <span>📄</span>
-            Exportar PDF
+            <span className="hidden sm:inline">Exportar PDF</span>
+            <span className="sm:hidden">PDF</span>
           </button>
           <button
             onClick={handleExportJson}
-            className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium flex items-center gap-2"
+            className="px-4 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium flex items-center justify-center gap-2 text-sm"
           >
             <span>📋</span>
-            Exportar JSON
+            <span className="hidden sm:inline">Exportar JSON</span>
+            <span className="sm:hidden">JSON</span>
           </button>
           <button
             onClick={handleNewEvaluation}
-            className="px-6 py-3 bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors font-medium"
+            className="col-span-2 md:col-span-1 px-4 py-3 bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors font-medium text-sm"
           >
             Nova Avaliação
           </button>
@@ -107,8 +104,8 @@ export function Result() {
 
         {/* Perfil por domínio */}
         <section className="mb-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">Perfil por Domínio</h2>
-          <div className="space-y-4">
+          <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-4">Perfil por Domínio</h2>
+          <div className="space-y-3">
             {result.domains.map(domain => (
               <DomainBar key={domain.name} domain={domain} />
             ))}
@@ -122,30 +119,23 @@ export function Result() {
 
         {/* Resultados por schema */}
         <section className="mb-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">Resultados por Esquema</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-4">Resultados por Esquema</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
             {result.schemas.map(schema => (
               <ResultCard key={schema.code} schema={schema} />
             ))}
           </div>
         </section>
 
-        {/* Disclaimer */}
-        <section className="bg-yellow-50 border border-yellow-200 rounded-lg p-6">
-          <h3 className="text-lg font-semibold text-yellow-900 mb-3">⚠️ Aviso Importante</h3>
-          <div className="text-sm text-yellow-800 space-y-2">
+        {/* Disclaimer compacto */}
+        <section className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+          <h3 className="text-base font-semibold text-yellow-900 mb-2">⚠️ Aviso Importante</h3>
+          <div className="text-xs text-yellow-800 space-y-1">
             <p>
-              Este resultado é gerado automaticamente e tem caráter <strong>informativo</strong>.
-              Os resultados <strong>NÃO</strong> substituem uma avaliação profissional realizada
-              por um psicólogo qualificado.
+              Resultado gerado automaticamente. <strong>NÃO</strong> substitui avaliação profissional.
             </p>
             <p>
-              A interpretação adequada dos esquemas deve ser feita por um profissional de saúde
-              mental, considerando o contexto clínico completo do paciente.
-            </p>
-            <p>
-              Para interpretação dos resultados, consulte um psicólogo especializado em
-              <strong> Terapia do Esquema</strong>.
+              Consulte um psicólogo especializado em Terapia do Esquema para interpretação adequada.
             </p>
           </div>
         </section>
