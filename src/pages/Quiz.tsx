@@ -13,6 +13,7 @@ export function Quiz() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const versionId = searchParams.get('version') || 'short-v1';
+  const isDebug = searchParams.get('debug') === 'true';
 
   const [phase, setPhase] = useState<QuizPhase>('instructions');
   const [questions, setQuestions] = useState<Question[]>([]);
@@ -61,6 +62,14 @@ export function Quiz() {
 
     // Navegar para resultado
     navigate('/resultado', { state: { result } });
+  };
+
+  const handleDebugFill = () => {
+    // Preencher todas as questões com valor 3
+    const debugAnswers = new Map<number, LikertValue>();
+    questions.forEach(q => debugAnswers.set(q.id, 3));
+    setAnswers(debugAnswers);
+    setCurrentIndex(totalQuestions - 1); // Ir para última questão
   };
 
   const isLastQuestion = currentIndex === totalQuestions - 1;
@@ -215,6 +224,18 @@ export function Quiz() {
         <div className="text-center mt-4 text-sm text-gray-500">
           {answers.size} de {totalQuestions} questões respondidas
         </div>
+
+        {/* Botão de debug */}
+        {isDebug && (
+          <div className="mt-6 text-center">
+            <button
+              onClick={handleDebugFill}
+              className="px-6 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors text-sm font-medium"
+            >
+              🐛 Debug: Preencher tudo e ir para última questão
+            </button>
+          </div>
+        )}
       </main>
     </div>
   );
