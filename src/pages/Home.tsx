@@ -1,15 +1,17 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState, useRef } from 'react';
-import { QuizResult } from '../types';
-import { loadHistory, removeEvaluation } from '../lib/storage';
+import { QuizResult, QuizDraft } from '../types';
+import { loadHistory, removeEvaluation, loadDraft, clearDraft } from '../lib/storage';
 import { importEvaluation } from '../lib/import';
 import { formatDate, formatScore } from '../lib/utils';
+import { quizVersions } from '../data/questions';
 
-const APP_VERSION = '1.1.0';
+const APP_VERSION = '1.2.0';
 
 export function Home() {
   const navigate = useNavigate();
   const [evaluations, setEvaluations] = useState<QuizResult[]>([]);
+  const [draft, setDraft] = useState<QuizDraft | null>(null);
   const [importError, setImportError] = useState<string | null>(null);
   const [importSuccess, setImportSuccess] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -17,6 +19,7 @@ export function Home() {
   useEffect(() => {
     const history = loadHistory();
     setEvaluations(history.evaluations);
+    setDraft(loadDraft());
   }, []);
 
   const handleRemove = (id: string) => {
@@ -28,6 +31,11 @@ export function Home() {
 
   const handleViewResult = (result: QuizResult) => {
     navigate('/resultado', { state: { result } });
+  };
+
+  const handleDiscardDraft = () => {
+    clearDraft();
+    setDraft(null);
   };
 
   const handleImportClick = () => {
@@ -102,6 +110,36 @@ export function Home() {
             <div className="text-xs text-gray-600">Minutos</div>
           </div>
         </div>
+
+        {/* Avaliação incompleta */}
+        {draft && (
+          <div className="bg-amber-50 border border-amber-300 rounded-xl shadow-sm p-5 mb-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 bg-amber-100 rounded-xl flex items-center justify-center shrink-0">
+                <svg className="w-6 h-6 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <p className="text-amber-900 font-medium">
+                Avaliação incompleta — {quizVersions[draft.versionId]?.name}, {draft.answers.length} de {quizVersions[draft.versionId]?.totalQuestions} respondidas
+              </p>
+            </div>
+            <div className="flex gap-2 shrink-0">
+              <button
+                onClick={() => navigate('/quiz?version=' + draft.versionId)}
+                className="px-5 py-2.5 bg-amber-600 text-white rounded-lg hover:bg-amber-700 transition-colors text-sm font-medium"
+              >
+                Continuar
+              </button>
+              <button
+                onClick={handleDiscardDraft}
+                className="px-5 py-2.5 bg-white text-amber-700 border border-amber-300 rounded-lg hover:bg-amber-100 transition-colors text-sm font-medium"
+              >
+                Descartar
+              </button>
+            </div>
+          </div>
+        )}
 
         {/* Nova Avaliação */}
         <section className="mb-12">
@@ -268,15 +306,26 @@ export function Home() {
               </svg>
               Avaliações Anteriores
             </h2>
-            <button
-              onClick={handleImportClick}
-              className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors text-sm font-medium flex items-center gap-2"
-            >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
-              </svg>
-              Importar
-            </button>
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => navigate('/comparar')}
+                className="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors text-sm font-medium flex items-center gap-2"
+              >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2" />
+                </svg>
+                Comparar
+              </button>
+              <button
+                onClick={handleImportClick}
+                className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors text-sm font-medium flex items-center gap-2"
+              >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+                </svg>
+                Importar
+              </button>
+            </div>
           </div>
 
           {/* Input file oculto para importação */}

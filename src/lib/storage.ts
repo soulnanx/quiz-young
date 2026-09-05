@@ -1,4 +1,4 @@
-import { QuizResult, EvaluationHistory } from '../types';
+import { QuizResult, EvaluationHistory, QuizDraft } from '../types';
 
 // ============================================
 // Persistência em localStorage
@@ -69,4 +69,45 @@ export function clearHistory(): void {
 export function getLatestEvaluation(): QuizResult | null {
   const history = loadHistory();
   return history.evaluations.length > 0 ? history.evaluations[0] : null;
+}
+
+// ============================================
+// Rascunho de quiz em andamento
+// ============================================
+
+const DRAFT_KEY = 'quiz-young-draft';
+const DRAFT_TTL_MS = 7 * 24 * 60 * 60 * 1000; // 7 dias
+
+export function saveDraft(draft: QuizDraft): void {
+  try {
+    localStorage.setItem(DRAFT_KEY, JSON.stringify(draft));
+  } catch (error) {
+    console.error('Erro ao salvar rascunho:', error);
+  }
+}
+
+export function loadDraft(): QuizDraft | null {
+  try {
+    const data = localStorage.getItem(DRAFT_KEY);
+    if (!data) {
+      return null;
+    }
+    const draft = JSON.parse(data) as QuizDraft;
+    if (Date.now() - new Date(draft.updatedAt).getTime() > DRAFT_TTL_MS) {
+      clearDraft();
+      return null;
+    }
+    return draft;
+  } catch (error) {
+    console.error('Erro ao carregar rascunho:', error);
+    return null;
+  }
+}
+
+export function clearDraft(): void {
+  try {
+    localStorage.removeItem(DRAFT_KEY);
+  } catch (error) {
+    console.error('Erro ao limpar rascunho:', error);
+  }
 }

@@ -102,3 +102,10 @@ export interface QuizResult {
 export interface EvaluationHistory {
   evaluations: QuizResult[];
 }
+
+export interface QuizDraft {
+  versionId: string;
+  answers: Answer[];
+  currentIndex: number;
+  updatedAt: string;
+}

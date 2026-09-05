@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useNavigate, useSearchParams, Link } from 'react-router-dom';
 import { Question, LikertValue, Answer } from '../types';
-import { getQuestionsByVersion } from '../data/questions';
+import { getQuestionsByVersion, quizVersions } from '../data/questions';
 import { computeQuizResult } from '../scoring/scoring';
-import { saveEvaluation } from '../lib/storage';
+import { saveEvaluation, saveDraft, loadDraft, clearDraft } from '../lib/storage';
 import { QuestionCard } from '../components/QuestionCard';
 import { ProgressBar } from '../components/ProgressBar';
 
@@ -19,6 +19,8 @@ export function Quiz() {
   const [questions, setQuestions] = useState<Question[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [answers, setAnswers] = useState<Map<number, LikertValue>>(new Map());
+  // Guarda contra o double-invoke de efeitos do StrictMode em dev
+  const restorePrompted = useRef(false);
 
   // Carregar questões
   useEffect(() => {
@@ -26,9 +28,35 @@ export function Quiz() {
     setQuestions(qs);
   }, [versionId]);
 
+  // Restaurar rascunho de avaliação incompleta
+  useEffect(() => {
+    if (phase !== 'instructions' || questions.length === 0) return;
+    if (restorePrompted.current) return;
+    const draft = loadDraft();
+    if (!draft || draft.versionId !== versionId || draft.answers.length === 0) return;
+    restorePrompted.current = true;
+    const resume = confirm(
+      `Você tem uma avaliação incompleta desta versão (${draft.answers.length} de ${questions.length} respondidas). Continuar de onde parou?`
+    );
+    if (resume) {
+      setAnswers(new Map(draft.answers.map(a => [a.questionId, a.value] as const)));
+      setCurrentIndex(draft.currentIndex);
+      setPhase('quiz');
+    } else {
+      clearDraft();
+    }
+  }, [questions, versionId, phase]);
+
   const currentQuestion = questions[currentIndex];
   const totalQuestions = questions.length;
   const currentValue = currentQuestion ? answers.get(currentQuestion.id) ?? null : null;
+
+  const buildDraft = () => ({
+    versionId,
+    answers: Array.from(answers.entries()).map(([questionId, value]) => ({ questionId, value })),
+    currentIndex,
+    updatedAt: new Date().toISOString()
+  });
 
   const handleAnswer = (value: LikertValue) => {
     if (!currentQuestion) return;
@@ -59,6 +87,7 @@ export function Quiz() {
 
     // Salvar no histórico
     saveEvaluation(result);
+    clearDraft();
 
     // Navegar para resultado
     navigate('/resultado', { state: { result } });
@@ -107,11 +136,26 @@ export function Quiz() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [phase, isLastQuestion, allAnswered, canProceed, currentIndex]);
 
+  // Autosave do rascunho durante o quiz
+  useEffect(() => {
+    if (phase !== 'quiz') return;
+    saveDraft(buildDraft());
+  }, [phase, versionId, answers, currentIndex]);
+
+  // Salvar rascunho ao fechar/recarregar a página
+  useEffect(() => {
+    const handleBeforeUnload = () => {
+      if (phase === 'quiz') saveDraft(buildDraft());
+    };
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    return () => window.removeEventListener('beforeunload', handleBeforeUnload);
+  }, [phase, versionId, answers, currentIndex]);
+
   // Tela de instruções
   if (phase === 'instructions') {
     const isLongVersion = versionId === 'long-v1';
-    const totalQuestions = isLongVersion ? 232 : 90;
-    const estimatedTime = isLongVersion ? '60' : '20';
+    const totalQuestions = quizVersions[versionId].totalQuestions;
+    const estimatedTime = totalQuestions === 200 ? '45' : totalQuestions === 232 ? '60' : '20';
 
     return (
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50">
