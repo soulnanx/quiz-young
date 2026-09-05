@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#3b82f6"/>
+      <stop offset="100%" stop-color="#2563eb"/>
+    </linearGradient>
+    <linearGradient id="clipGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e40af"/>
+      <stop offset="100%" stop-color="#1e3a8a"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background rounded square (maskable safe area uses inner ~410px) -->
+  <rect x="0" y="0" width="512" height="512" rx="96" ry="96" fill="url(#bgGrad)"/>
+
+  <!-- Clipboard body (white paper) -->
+  <rect x="116" y="120" width="280" height="320" rx="20" ry="20" fill="#ffffff"/>
+
+  <!-- Subtle paper shadow accent -->
+  <rect x="116" y="120" width="280" height="8" fill="#e5e7eb" opacity="0.6"/>
+
+  <!-- Clipboard clip (top metal piece) -->
+  <rect x="196" y="80" width="120" height="64" rx="14" ry="14" fill="url(#clipGrad)"/>
+  <rect x="216" y="68" width="80" height="32" rx="10" ry="10" fill="#1e3a8a"/>
+
+  <!-- Clip mounting slot -->
+  <rect x="236" y="100" width="40" height="14" rx="6" ry="6" fill="#0f172a" opacity="0.35"/>
+
+  <!-- Checklist item 1 (checked) -->
+  <circle cx="160" cy="200" r="14" fill="#2563eb"/>
+  <path d="M 152 200 l 6 6 l 12 -12" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="188" y="194" width="160" height="12" rx="6" ry="6" fill="#cbd5e1"/>
+
+  <!-- Checklist item 2 (checked) -->
+  <circle cx="160" cy="256" r="14" fill="#2563eb"/>
+  <path d="M 152 256 l 6 6 l 12 -12" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="188" y="250" width="140" height="12" rx="6" ry="6" fill="#cbd5e1"/>
+
+  <!-- Checklist item 3 (current/unchecked) -->
+  <circle cx="160" cy="312" r="14" fill="none" stroke="#2563eb" stroke-width="4"/>
+  <rect x="188" y="306" width="170" height="12" rx="6" ry="6" fill="#e2e8f0"/>
+
+  <!-- Checklist item 4 (unchecked) -->
+  <circle cx="160" cy="368" r="14" fill="none" stroke="#94a3b8" stroke-width="4"/>
+  <rect x="188" y="362" width="120" height="12" rx="6" ry="6" fill="#e2e8f0"/>
+</svg>
