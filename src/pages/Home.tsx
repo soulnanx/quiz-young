@@ -1,14 +1,18 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { QuizResult } from '../types';
 import { loadHistory, removeEvaluation } from '../lib/storage';
+import { importEvaluation } from '../lib/import';
 import { formatDate, formatScore } from '../lib/utils';
 
-const APP_VERSION = '1.0.0';
+const APP_VERSION = '1.1.0';
 
 export function Home() {
   const navigate = useNavigate();
   const [evaluations, setEvaluations] = useState<QuizResult[]>([]);
+  const [importError, setImportError] = useState<string | null>(null);
+  const [importSuccess, setImportSuccess] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     const history = loadHistory();
@@ -24,6 +28,33 @@ export function Home() {
 
   const handleViewResult = (result: QuizResult) => {
     navigate('/resultado', { state: { result } });
+  };
+
+  const handleImportClick = () => {
+    fileInputRef.current?.click();
+  };
+
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    try {
+      setImportError(null);
+      const importedResult = await importEvaluation(file);
+      setImportSuccess(true);
+      setEvaluations(loadHistory().evaluations);
+      setTimeout(() => {
+        setImportSuccess(false);
+        handleViewResult(importedResult);
+      }, 1500);
+    } catch (error) {
+      setImportError((error as Error).message);
+      setTimeout(() => setImportError(null), 5000);
+    }
+
+    if (fileInputRef.current) {
+      fileInputRef.current.value = '';
+    }
   };
 
   return (
@@ -181,15 +212,47 @@ export function Home() {
         </section>
 
         {/* Histórico */}
-        {evaluations.length > 0 && (
-          <section className="mb-12">
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+        <section className="mb-12">
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 flex items-center gap-2">
               <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
               Avaliações Anteriores
             </h2>
-            
+            <button
+              onClick={handleImportClick}
+              className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors text-sm font-medium flex items-center gap-2"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+              </svg>
+              Importar
+            </button>
+          </div>
+
+          {/* Input file oculto para importação */}
+          <input
+            ref={fileInputRef}
+            type="file"
+            accept=".json"
+            onChange={handleFileChange}
+            className="hidden"
+          />
+
+          {/* Mensagens de feedback */}
+          {importError && (
+            <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6">
+              <p className="text-red-800 text-sm"> {importError}</p>
+            </div>
+          )}
+          {importSuccess && (
+            <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-6">
+              <p className="text-green-800 text-sm">✅ Avaliação importada com sucesso! Redirecionando...</p>
+            </div>
+          )}
+
+          {evaluations.length > 0 ? (
             <div className="space-y-4">
               {evaluations.map((eval_) => {
                 const significantCount = eval_.schemas.filter(
@@ -247,8 +310,13 @@ export function Home() {
                 );
               })}
             </div>
-          </section>
-        )}
+          ) : (
+            <div className="text-center py-12 text-gray-500">
+              <p>Nenhuma avaliação anterior encontrada.</p>
+              <p className="text-sm mt-2">Inicie uma nova avaliação ou importe um questionário.</p>
+            </div>
+          )}
+        </section>
 
         {/* Sobre o Questionário */}
         <section className="bg-white rounded-2xl shadow-sm border border-gray-200 p-8">

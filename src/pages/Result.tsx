@@ -1,20 +1,15 @@
 import { useLocation, useNavigate, Link } from 'react-router-dom';
-import { useState, useRef } from 'react';
 import { QuizResult } from '../types';
 import { ResultCard } from '../components/ResultCard';
 import { DomainBar } from '../components/DomainBar';
 import { SchemaRadarChart } from '../components/SchemaRadarChart';
 import { exportAsJson, exportAsPdf } from '../lib/export';
-import { importEvaluation } from '../lib/import';
 import { formatScore, formatDate } from '../lib/utils';
 
 export function Result() {
   const location = useLocation();
   const navigate = useNavigate();
   const result = (location.state as { result?: QuizResult })?.result;
-  const fileInputRef = useRef<HTMLInputElement>(null);
-  const [importError, setImportError] = useState<string | null>(null);
-  const [importSuccess, setImportSuccess] = useState(false);
 
   // Se não há resultado, redirecionar para home
   if (!result) {
@@ -40,31 +35,6 @@ export function Result() {
 
   const handleNewEvaluation = () => {
     navigate('/');
-  };
-
-  const handleImportClick = () => {
-    fileInputRef.current?.click();
-  };
-
-  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-
-    try {
-      setImportError(null);
-      const importedResult = await importEvaluation(file);
-      setImportSuccess(true);
-      setTimeout(() => {
-        navigate('/resultado', { state: { result: importedResult }, replace: true });
-      }, 1500);
-    } catch (error) {
-      setImportError((error as Error).message);
-      setTimeout(() => setImportError(null), 5000);
-    }
-
-    if (fileInputRef.current) {
-      fileInputRef.current.value = '';
-    }
   };
 
   const significantSchemas = result.schemas.filter(
@@ -108,7 +78,7 @@ export function Result() {
         </div>
 
         {/* Botões de ação compactos */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-8">
           <button
             onClick={handleExportPdf}
             className="px-4 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors font-medium flex items-center justify-center gap-2 text-sm"
@@ -126,41 +96,12 @@ export function Result() {
             <span className="sm:hidden">JSON</span>
           </button>
           <button
-            onClick={handleImportClick}
-            className="px-4 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-medium flex items-center justify-center gap-2 text-sm"
-          >
-            <span>📥</span>
-            <span className="hidden sm:inline">Importar</span>
-            <span className="sm:hidden">Importar</span>
-          </button>
-          <button
             onClick={handleNewEvaluation}
-            className="px-4 py-3 bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors font-medium text-sm"
+            className="col-span-2 md:col-span-1 px-4 py-3 bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors font-medium text-sm"
           >
             Nova Avaliação
           </button>
         </div>
-
-        {/* Input file oculto para importação */}
-        <input
-          ref={fileInputRef}
-          type="file"
-          accept=".json"
-          onChange={handleFileChange}
-          className="hidden"
-        />
-
-        {/* Mensagens de feedback */}
-        {importError && (
-          <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6">
-            <p className="text-red-800 text-sm"> {importError}</p>
-          </div>
-        )}
-        {importSuccess && (
-          <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-6">
-            <p className="text-green-800 text-sm">✅ Avaliação importada com sucesso! Redirecionando...</p>
-          </div>
-        )}
 
         {/* Perfil por domínio */}
         <section className="mb-8">
