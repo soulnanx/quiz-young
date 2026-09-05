@@ -103,14 +103,14 @@ export function LikertScale({ value, onChange }: LikertScaleProps) {
           ))}
         </div>
 
-        {/* Label do valor selecionado */}
-        {value && (
-          <div className="text-center">
+        {/* Label do valor selecionado - espaço reservado mesmo quando vazio */}
+        <div className="text-center h-8 flex items-center justify-center">
+          {value && (
             <span className="inline-block px-3 py-1 bg-blue-50 text-blue-900 rounded-full text-sm font-medium">
               {labels.find(l => l.value === value)?.label}
             </span>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </div>
   );
