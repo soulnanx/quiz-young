@@ -1,0 +1,292 @@
+import { Question, QuizVersion } from '../types';
+
+// ============================================
+// 232 Questões da Versão Longa (YSQ-L3)
+// ============================================
+// Itens por esquema (varia por esquema):
+// ed: 1-9 | ab: 10-26 | ma: 27-43 | si: 44-53 | ds: 54-68 | fa: 69-77
+// di: 78-92 | vh: 93-104 | em: 105-115 | sb: 116-125 | ss: 126-142
+// ei: 143-151 | us: 152-167 | et: 168-178 | is: 179-193 | as: 194-207
+// np: 208-218 | pu: 219-232
+
+export const questionsLong: Question[] = [
+  // ===== ed — Privação Emocional (1-9) =====
+  { id: 1, order: 1, schemaCode: 'ed', text: 'As pessoas não estiveram presentes para suprir minhas necessidades emocionais.' },
+  { id: 2, order: 2, schemaCode: 'ed', text: 'Eu não recebi amor e atenção suficientes.' },
+  { id: 3, order: 3, schemaCode: 'ed', text: 'Na maior parte do tempo, não tive alguém em quem pudesse confiar para me dar conselhos e apoio emocional.' },
+  { id: 4, order: 4, schemaCode: 'ed', text: 'Na maior parte do tempo, não tive alguém para cuidar de mim, compartilhar a vida comigo ou se importar profundamente com tudo o que me acontece.' },
+  { id: 5, order: 5, schemaCode: 'ed', text: 'Durante grande parte da minha vida, não tive alguém que quisesse se aproximar de mim e passar bastante tempo comigo.' },
+  { id: 6, order: 6, schemaCode: 'ed', text: 'Em geral, as pessoas não estiveram presentes para me dar carinho, acolhimento e afeto.' },
+  { id: 7, order: 7, schemaCode: 'ed', text: 'Durante grande parte da minha vida, não senti que sou especial para alguém.' },
+  { id: 8, order: 8, schemaCode: 'ed', text: 'Na maior parte do tempo, não tive alguém que realmente me escutasse, me compreendesse ou estivesse sintonizado com minhas verdadeiras necessidades e sentimentos.' },
+  { id: 9, order: 9, schemaCode: 'ed', text: 'Raramente tive uma pessoa forte para me dar bons conselhos ou orientação quando não tenho certeza do que fazer.' },
+
+  // ===== ab — Abandono/Instabilidade (10-26) =====
+  { id: 10, order: 10, schemaCode: 'ab', text: 'Eu me preocupo que as pessoas que amo morram em breve, mesmo que haja pouca razão médica para sustentar essa preocupação.' },
+  { id: 11, order: 11, schemaCode: 'ab', text: 'Percebo que me agarro às pessoas próximas de mim, porque tenho medo de que elas me deixem.' },
+  { id: 12, order: 12, schemaCode: 'ab', text: 'Eu me preocupo que as pessoas com quem me sinto próximo me deixem ou me abandonem.' },
+  { id: 13, order: 13, schemaCode: 'ab', text: 'Sinto que me falta uma base estável de apoio emocional.' },
+  { id: 14, order: 14, schemaCode: 'ab', text: 'Não sinto que relacionamentos importantes vão durar; espero que eles terminem.' },
+  { id: 15, order: 15, schemaCode: 'ab', text: 'Sinto-me dependente de parceiros que não conseguem estar comigo de forma comprometida.' },
+  { id: 16, order: 16, schemaCode: 'ab', text: 'No fim, eu vou ficar sozinho.' },
+  { id: 17, order: 17, schemaCode: 'ab', text: 'Quando sinto que alguém por quem me importo está se afastando de mim, fico desesperado.' },
+  { id: 18, order: 18, schemaCode: 'ab', text: 'Às vezes fico tão preocupado com a possibilidade de as pessoas me deixarem que acabo afastando-as.' },
+  { id: 19, order: 19, schemaCode: 'ab', text: 'Fico chateado quando alguém me deixa sozinho, mesmo que por um curto período de tempo.' },
+  { id: 20, order: 20, schemaCode: 'ab', text: 'Não posso contar que as pessoas que me apoiam estejam presentes com regularidade.' },
+  { id: 21, order: 21, schemaCode: 'ab', text: 'Não consigo me permitir ficar realmente próximo de outras pessoas, porque não tenho certeza de que elas estarão sempre presentes.' },
+  { id: 22, order: 22, schemaCode: 'ab', text: 'Parece que as pessoas importantes da minha vida estão sempre indo e vindo.' },
+  { id: 23, order: 23, schemaCode: 'ab', text: 'Preocupo-me muito que as pessoas que amo encontrem outra pessoa de sua preferência e me deixem.' },
+  { id: 24, order: 24, schemaCode: 'ab', text: 'As pessoas próximas de mim têm sido muito imprevisíveis; num momento estão disponíveis e gentis comigo; no outro, estão bravas, chateadas, focadas em si mesmas, brigando, etc.' },
+  { id: 25, order: 25, schemaCode: 'ab', text: 'Preciso tanto das outras pessoas que me preocupo em perdê-las.' },
+  { id: 26, order: 26, schemaCode: 'ab', text: 'Não posso ser eu mesmo nem expressar o que realmente sinto, senão as pessoas vão me deixar.' },
+
+  // ===== ma — Desconfiança/Abuso (27-43) =====
+  { id: 27, order: 27, schemaCode: 'ma', text: 'Sinto que as pessoas vão tirar vantagem de mim.' },
+  { id: 28, order: 28, schemaCode: 'ma', text: 'Frequentemente sinto que tenho que me proteger das outras pessoas.' },
+  { id: 29, order: 29, schemaCode: 'ma', text: 'Sinto que não posso baixar a guarda na presença de outras pessoas, senão elas vão me machucar de propósito.' },
+  { id: 30, order: 30, schemaCode: 'ma', text: 'Se alguém age de forma gentil comigo, presumo que essa pessoa deve estar querendo algo.' },
+  { id: 31, order: 31, schemaCode: 'ma', text: 'É só uma questão de tempo até alguém me trair.' },
+  { id: 32, order: 32, schemaCode: 'ma', text: 'A maioria das pessoas só pensa em si mesma.' },
+  { id: 33, order: 33, schemaCode: 'ma', text: 'Tenho muita dificuldade em confiar nas pessoas.' },
+  { id: 34, order: 34, schemaCode: 'ma', text: 'Sou bastante desconfiado das intenções das outras pessoas.' },
+  { id: 35, order: 35, schemaCode: 'ma', text: 'As outras pessoas raramente são honestas; geralmente não são o que aparentam ser.' },
+  { id: 36, order: 36, schemaCode: 'ma', text: 'Geralmente fico atento aos motivos ocultos das pessoas.' },
+  { id: 37, order: 37, schemaCode: 'ma', text: 'Se acho que alguém está querendo me machucar, tento machucar essa pessoa primeiro.' },
+  { id: 38, order: 38, schemaCode: 'ma', text: 'As pessoas geralmente precisam provar seu valor para mim antes que eu possa confiar nelas.' },
+  { id: 39, order: 39, schemaCode: 'ma', text: 'Eu armo "testes" para as outras pessoas, para ver se estão me dizendo a verdade e se têm boas intenções.' },
+  { id: 40, order: 40, schemaCode: 'ma', text: 'Acredito na máxima: "Controle ou seja controlado."' },
+  { id: 41, order: 41, schemaCode: 'ma', text: 'Fico com raiva quando penso nas formas como fui maltratado por outras pessoas durante a minha vida.' },
+  { id: 42, order: 42, schemaCode: 'ma', text: 'Durante a minha vida, pessoas próximas de mim tiraram vantagem de mim ou me usaram para os próprios interesses.' },
+  { id: 43, order: 43, schemaCode: 'ma', text: 'Fui abusado física, emocional ou sexualmente por pessoas importantes da minha vida.' },
+
+  // ===== si — Isolamento Social (44-53) =====
+  { id: 44, order: 44, schemaCode: 'si', text: 'Eu não me encaixo.' },
+  { id: 45, order: 45, schemaCode: 'si', text: 'Sou fundamentalmente diferente das outras pessoas.' },
+  { id: 46, order: 46, schemaCode: 'si', text: 'Eu não pertenço a lugar nenhum; sou uma pessoa solitária.' },
+  { id: 47, order: 47, schemaCode: 'si', text: 'Sinto-me alienado das outras pessoas.' },
+  { id: 48, order: 48, schemaCode: 'si', text: 'Sinto-me isolado e sozinho.' },
+  { id: 49, order: 49, schemaCode: 'si', text: 'Sempre me sinto de fora dos grupos.' },
+  { id: 50, order: 50, schemaCode: 'si', text: 'Ninguém realmente me entende.' },
+  { id: 51, order: 51, schemaCode: 'si', text: 'Minha família sempre foi diferente das famílias ao nosso redor.' },
+  { id: 52, order: 52, schemaCode: 'si', text: 'Às vezes sinto como se eu fosse um alienígena.' },
+  { id: 53, order: 53, schemaCode: 'si', text: 'Se eu desaparecesse amanhã, ninguém notaria.' },
+
+  // ===== ds — Defectividade/Vergonha (54-68) =====
+  { id: 54, order: 54, schemaCode: 'ds', text: 'Nenhum homem/mulher que eu deseje poderia me amar depois de ver meus defeitos.' },
+  { id: 55, order: 55, schemaCode: 'ds', text: 'Ninguém que eu deseje iria querer ficar perto de mim se conhecesse quem eu sou de verdade.' },
+  { id: 56, order: 56, schemaCode: 'ds', text: 'Sou fundamentalmente falho e defeituoso.' },
+  { id: 57, order: 57, schemaCode: 'ds', text: 'Não importa o quanto eu tente, sinto que não conseguirei que um homem/mulher importante me respeite ou sinta que eu tenho valor.' },
+  { id: 58, order: 58, schemaCode: 'ds', text: 'Não sou digno do amor, da atenção e do respeito dos outros.' },
+  { id: 59, order: 59, schemaCode: 'ds', text: 'Sinto que não sou amável.' },
+  { id: 60, order: 60, schemaCode: 'ds', text: 'Sou inaceitável demais em aspectos muito básicos para me revelar às outras pessoas.' },
+  { id: 61, order: 61, schemaCode: 'ds', text: 'Se os outros descobrissem meus defeitos básicos, eu não conseguiria encará-los.' },
+  { id: 62, order: 62, schemaCode: 'ds', text: 'Quando as pessoas gostam de mim, sinto que estou enganando-as.' },
+  { id: 63, order: 63, schemaCode: 'ds', text: 'Frequentemente me vejo atraído por pessoas que são muito críticas comigo ou que me rejeitam.' },
+  { id: 64, order: 64, schemaCode: 'ds', text: 'Tenho segredos internos que não quero que as pessoas próximas de mim descubram.' },
+  { id: 65, order: 65, schemaCode: 'ds', text: 'É culpa minha que meu(s) pai(s)/mãe(s) não tenham conseguido me amar o suficiente.' },
+  { id: 66, order: 66, schemaCode: 'ds', text: 'Não deixo as pessoas conhecerem quem eu sou de verdade.' },
+  { id: 67, order: 67, schemaCode: 'ds', text: 'Um dos meus maiores medos é que meus defeitos sejam expostos.' },
+  { id: 68, order: 68, schemaCode: 'ds', text: 'Não consigo entender como alguém poderia me amar.' },
+
+  // ===== fa — Fracasso (69-77) =====
+  { id: 69, order: 69, schemaCode: 'fa', text: 'Quase nada do que eu faço no trabalho (ou nos estudos) é tão bom quanto o que as outras pessoas conseguem fazer.' },
+  { id: 70, order: 70, schemaCode: 'fa', text: 'Sou incompetente quando se trata de realizações.' },
+  { id: 71, order: 71, schemaCode: 'fa', text: 'A maioria das outras pessoas é mais capaz do que eu nas áreas de trabalho (ou estudos) e realizações.' },
+  { id: 72, order: 72, schemaCode: 'fa', text: 'Sou um fracasso.' },
+  { id: 73, order: 73, schemaCode: 'fa', text: 'Não sou tão talentoso quanto a maioria das pessoas no trabalho (ou nos estudos).' },
+  { id: 74, order: 74, schemaCode: 'fa', text: 'Não sou tão inteligente quanto a maioria das pessoas quando se trata de trabalho (ou estudos).' },
+  { id: 75, order: 75, schemaCode: 'fa', text: 'Sinto-me humilhado pelos meus fracassos e inadequações na área do trabalho (ou dos estudos).' },
+  { id: 76, order: 76, schemaCode: 'fa', text: 'Frequentemente me sinto envergonhado perto de outras pessoas, porque não estou à altura delas em termos de minhas conquistas.' },
+  { id: 77, order: 77, schemaCode: 'fa', text: 'Frequentemente comparo minhas conquistas com as dos outros e sinto que eles são muito mais bem-sucedidos.' },
+
+  // ===== di — Dependência/Incompetência (78-92) =====
+  { id: 78, order: 78, schemaCode: 'di', text: 'Não me sinto capaz de me virar sozinho na vida cotidiana.' },
+  { id: 79, order: 79, schemaCode: 'di', text: 'Preciso de outras pessoas para me ajudar a me virar.' },
+  { id: 80, order: 80, schemaCode: 'di', text: 'Não sinto que consigo lidar bem com as coisas sozinho.' },
+  { id: 81, order: 81, schemaCode: 'di', text: 'Acredito que outras pessoas podem cuidar de mim melhor do que eu mesmo.' },
+  { id: 82, order: 82, schemaCode: 'di', text: 'Tenho dificuldade em enfrentar novas tarefas fora do trabalho, a menos que tenha alguém para me orientar.' },
+  { id: 83, order: 83, schemaCode: 'di', text: 'Considero-me uma pessoa dependente quando se trata do funcionamento do dia a dia.' },
+  { id: 84, order: 84, schemaCode: 'di', text: 'Estrago tudo o que tento fazer, mesmo fora do trabalho (ou dos estudos).' },
+  { id: 85, order: 85, schemaCode: 'di', text: 'Sou inepto na maioria das áreas da vida.' },
+  { id: 86, order: 86, schemaCode: 'di', text: 'Se eu confiar no meu próprio julgamento em situações do dia a dia, vou tomar a decisão errada.' },
+  { id: 87, order: 87, schemaCode: 'di', text: 'Me falta bom senso.' },
+  { id: 88, order: 88, schemaCode: 'di', text: 'Não se pode confiar no meu julgamento em situações do dia a dia.' },
+  { id: 89, order: 89, schemaCode: 'di', text: 'Não me sinto confiante na minha capacidade de resolver os problemas do dia a dia que surgem.' },
+  { id: 90, order: 90, schemaCode: 'di', text: 'Sinto que preciso de alguém em quem possa confiar para me dar conselhos sobre questões práticas.' },
+  { id: 91, order: 91, schemaCode: 'di', text: 'Sinto-me mais como uma criança do que como um adulto quando se trata de lidar com as responsabilidades do dia a dia.' },
+  { id: 92, order: 92, schemaCode: 'di', text: 'Acho as responsabilidades da vida cotidiana avassaladoras.' },
+
+  // ===== vh — Vulnerabilidade a Danos/Doenças (93-104) =====
+  { id: 93, order: 93, schemaCode: 'vh', text: 'Parece que não consigo escapar da sensação de que algo ruim está prestes a acontecer.' },
+  { id: 94, order: 94, schemaCode: 'vh', text: 'Sinto que uma tragédia (natural, criminal, financeira ou médica) pode acontecer a qualquer momento.' },
+  { id: 95, order: 95, schemaCode: 'vh', text: 'Preocupo-me em me tornar um morador de rua ou andarilho.' },
+  { id: 96, order: 96, schemaCode: 'vh', text: 'Preocupo-me em ser atacado.' },
+  { id: 97, order: 97, schemaCode: 'vh', text: 'Tomo grandes precauções para evitar ficar doente ou me machucar.' },
+  { id: 98, order: 98, schemaCode: 'vh', text: 'Preocupo-me que esteja desenvolvendo uma doença grave, mesmo que nenhum médico tenha diagnosticado algo sério.' },
+  { id: 99, order: 99, schemaCode: 'vh', text: 'Sou uma pessoa medrosa.' },
+  { id: 100, order: 100, schemaCode: 'vh', text: 'Preocupo-me muito com as coisas ruins que acontecem no mundo: crime, poluição, etc.' },
+  { id: 101, order: 101, schemaCode: 'vh', text: 'Frequentemente sinto que posso enlouquecer.' },
+  { id: 102, order: 102, schemaCode: 'vh', text: 'Frequentemente sinto que vou ter uma crise de ansiedade.' },
+  { id: 103, order: 103, schemaCode: 'vh', text: 'Frequentemente me preocupo que possa ter um ataque cardíaco ou câncer, mesmo havendo pouca razão médica para essa preocupação.' },
+  { id: 104, order: 104, schemaCode: 'vh', text: 'Sinto que o mundo é um lugar perigoso.' },
+
+  // ===== em — Emaranhamento/Self Indiferenciado (105-115) =====
+  { id: 105, order: 105, schemaCode: 'em', text: 'Não consegui me separar do(s) meu(s) pai(s)/mãe(s) do jeito que outras pessoas da minha idade parecem ter conseguido.' },
+  { id: 106, order: 106, schemaCode: 'em', text: 'Eu e meu(s) pai(s)/mãe(s) tendemos a nos envolver demais na vida e nos problemas uns dos outros.' },
+  { id: 107, order: 107, schemaCode: 'em', text: 'É muito difícil para mim e para meu(s) pai(s)/mãe(s) guardar detalhes íntimos uns dos outros sem nos sentirmos traídos ou culpados.' },
+  { id: 108, order: 108, schemaCode: 'em', text: 'Eu e meu(s) pai(s)/mãe(s) precisamos falar uns com os outros quase todos os dias, senão um de nós se sente culpado, magoado, decepcionado ou sozinho.' },
+  { id: 109, order: 109, schemaCode: 'em', text: 'Frequentemente sinto que não tenho uma identidade separada dos meus pais ou do meu parceiro.' },
+  { id: 110, order: 110, schemaCode: 'em', text: 'Frequentemente sinto como se meu(s) pai(s)/mãe(s) vivessem através de mim — não tenho uma vida própria.' },
+  { id: 111, order: 111, schemaCode: 'em', text: 'É muito difícil para mim manter qualquer distância das pessoas com quem sou íntimo; tenho dificuldade em preservar um senso separado de mim mesmo.' },
+  { id: 112, order: 112, schemaCode: 'em', text: 'Estou tão envolvido com meu parceiro ou com meu(s) pai(s)/mãe(s) que não sei realmente quem sou ou o que quero.' },
+  { id: 113, order: 113, schemaCode: 'em', text: 'Tenho dificuldade em separar meu ponto de vista ou opinião do do(s) meu(s) pai(s)/mãe(s) ou do meu parceiro.' },
+  { id: 114, order: 114, schemaCode: 'em', text: 'Frequentemente sinto que não tenho privacidade quando se trata do(s) meu(s) pai(s)/mãe(s) ou do meu parceiro.' },
+  { id: 115, order: 115, schemaCode: 'em', text: 'Sinto que meu(s) pai(s)/mãe(s) ficam, ou ficariam, muito magoados com o fato de eu morar sozinho, longe deles.' },
+
+  // ===== sb — Subjugação (116-125) =====
+  { id: 116, order: 116, schemaCode: 'sb', text: 'Deixo as outras pessoas fazerem do jeito delas, porque temo as consequências.' },
+  { id: 117, order: 117, schemaCode: 'sb', text: 'Acredito que, se eu fizer o que quero, só estou procurando problemas.' },
+  { id: 118, order: 118, schemaCode: 'sb', text: 'Sinto que não tenho escolha a não ser ceder aos desejos das outras pessoas, senão elas vão se vingar ou me rejeitar de alguma forma.' },
+  { id: 119, order: 119, schemaCode: 'sb', text: 'Nos relacionamentos, deixo a outra pessoa ter vantagem sobre mim.' },
+  { id: 120, order: 120, schemaCode: 'sb', text: 'Sempre deixei os outros fazerem escolhas por mim, então realmente não sei o que quero para mim mesmo.' },
+  { id: 121, order: 121, schemaCode: 'sb', text: 'Sinto que as grandes decisões da minha vida não foram realmente minhas.' },
+  { id: 122, order: 122, schemaCode: 'sb', text: 'Preocupo-me muito em agradar as outras pessoas, para que elas não me rejeitem.' },
+  { id: 123, order: 123, schemaCode: 'sb', text: 'Tenho muita dificuldade em exigir que meus direitos sejam respeitados e que meus sentimentos sejam levados em consideração.' },
+  { id: 124, order: 124, schemaCode: 'sb', text: 'Vingo-me das pessoas de formas pequenas em vez de demonstrar minha raiva diretamente.' },
+  { id: 125, order: 125, schemaCode: 'sb', text: 'Vou muito mais longe do que a maioria das pessoas para evitar confrontos.' },
+
+  // ===== ss — Autossacrifício (126-142) =====
+  { id: 126, order: 126, schemaCode: 'ss', text: 'Coloco as necessidades dos outros antes das minhas, senão me sinto culpado.' },
+  { id: 127, order: 127, schemaCode: 'ss', text: 'Sinto-me culpado quando decepciono outras pessoas.' },
+  { id: 128, order: 128, schemaCode: 'ss', text: 'Dou mais às outras pessoas do que recebo em troca.' },
+  { id: 129, order: 129, schemaCode: 'ss', text: 'Geralmente sou eu quem acaba cuidando das pessoas próximas de mim.' },
+  { id: 130, order: 130, schemaCode: 'ss', text: 'Quase não há nada que eu não suportaria se amasse alguém.' },
+  { id: 131, order: 131, schemaCode: 'ss', text: 'Sou uma boa pessoa porque penso mais nos outros do que em mim mesmo.' },
+  { id: 132, order: 132, schemaCode: 'ss', text: 'No trabalho, geralmente sou eu quem se oferece para fazer tarefas extras ou para dedicar tempo extra.' },
+  { id: 133, order: 133, schemaCode: 'ss', text: 'Não importa o quanto eu esteja ocupado, sempre consigo encontrar tempo para os outros.' },
+  { id: 134, order: 134, schemaCode: 'ss', text: 'Consigo me virar com muito pouco, porque minhas necessidades são mínimas.' },
+  { id: 135, order: 135, schemaCode: 'ss', text: 'Só fico feliz quando as pessoas ao meu redor estão felizes.' },
+  { id: 136, order: 136, schemaCode: 'ss', text: 'Estou tão ocupado fazendo coisas pelas pessoas com quem me importo que tenho pouco tempo para mim mesmo.' },
+  { id: 137, order: 137, schemaCode: 'ss', text: 'Sempre fui aquele que escuta os problemas de todo mundo.' },
+  { id: 138, order: 138, schemaCode: 'ss', text: 'Sinto-me mais confortável dando um presente do que recebendo um.' },
+  { id: 139, order: 139, schemaCode: 'ss', text: 'As outras pessoas me veem fazendo demais pelos outros e não o suficiente por mim mesmo.' },
+  { id: 140, order: 140, schemaCode: 'ss', text: 'Não importa o quanto eu dê, sinto que nunca é suficiente.' },
+  { id: 141, order: 141, schemaCode: 'ss', text: 'Se eu fizer o que quero, sinto-me muito desconfortável.' },
+  { id: 142, order: 142, schemaCode: 'ss', text: 'É muito difícil para mim pedir que os outros cuidem das minhas necessidades.' },
+
+  // ===== ei — Inibição Emocional (143-151) =====
+  { id: 143, order: 143, schemaCode: 'ei', text: 'Preocupo-me em perder o controle das minhas ações.' },
+  { id: 144, order: 144, schemaCode: 'ei', text: 'Preocupo-me que possa machucar seriamente alguém física ou emocionalmente, se minha raiva sair do controle.' },
+  { id: 145, order: 145, schemaCode: 'ei', text: 'Sinto que preciso controlar minhas emoções e impulsos, senão algo ruim provavelmente vai acontecer.' },
+  { id: 146, order: 146, schemaCode: 'ei', text: 'Muita raiva e ressentimento se acumulam dentro de mim sem que eu os expresse.' },
+  { id: 147, order: 147, schemaCode: 'ei', text: 'Sou envergonhado demais para demonstrar sentimentos positivos aos outros (por ex.: afeto, demonstrar que me importo).' },
+  { id: 148, order: 148, schemaCode: 'ei', text: 'Acho constrangedor expressar meus sentimentos aos outros.' },
+  { id: 149, order: 149, schemaCode: 'ei', text: 'Acho difícil ser caloroso e espontâneo.' },
+  { id: 150, order: 150, schemaCode: 'ei', text: 'Controlo-me tanto que as pessoas acham que sou insensível.' },
+  { id: 151, order: 151, schemaCode: 'ei', text: 'As pessoas me veem como alguém emocionalmente reprimido.' },
+
+  // ===== us — Padrões Inflexíveis/Hipercrítica (152-167) =====
+  { id: 152, order: 152, schemaCode: 'us', text: 'Preciso ser o melhor na maioria das coisas que faço; não consigo aceitar o segundo lugar.' },
+  { id: 153, order: 153, schemaCode: 'us', text: 'Esforço-me para manter quase tudo em perfeita ordem.' },
+  { id: 154, order: 154, schemaCode: 'us', text: 'Preciso estar na minha melhor aparência na maior parte do tempo.' },
+  { id: 155, order: 155, schemaCode: 'us', text: 'Tento fazer o meu melhor; não consigo me contentar com "bom o suficiente".' },
+  { id: 156, order: 156, schemaCode: 'us', text: 'Tenho tanta coisa para realizar que quase não há tempo para relaxar de verdade.' },
+  { id: 157, order: 157, schemaCode: 'us', text: 'Quase nada do que faço é bom o suficiente; sempre posso fazer melhor.' },
+  { id: 158, order: 158, schemaCode: 'us', text: 'Preciso cumprir todas as minhas responsabilidades.' },
+  { id: 159, order: 159, schemaCode: 'us', text: 'Sinto que há uma pressão constante para que eu conquiste e termine as coisas.' },
+  { id: 160, order: 160, schemaCode: 'us', text: 'Meus relacionamentos sofrem porque me cobro demais.' },
+  { id: 161, order: 161, schemaCode: 'us', text: 'Minha saúde está sofrendo porque me coloco sob muita pressão para ir bem.' },
+  { id: 162, order: 162, schemaCode: 'us', text: 'Frequentemente sacrifico prazer e felicidade para atingir meus próprios padrões.' },
+  { id: 163, order: 163, schemaCode: 'us', text: 'Quando cometo um erro, mereço fortes críticas.' },
+  { id: 164, order: 164, schemaCode: 'us', text: 'Não consigo me poupar facilmente nem arranjar desculpas para meus erros.' },
+  { id: 165, order: 165, schemaCode: 'us', text: 'Sou uma pessoa muito competitiva.' },
+  { id: 166, order: 166, schemaCode: 'us', text: 'Dou muita importância a dinheiro ou status.' },
+  { id: 167, order: 167, schemaCode: 'us', text: 'Sempre tenho que ser o número um em termos do meu desempenho.' },
+
+  // ===== et — Grandiosidade/Entitlement (168-178) =====
+  { id: 168, order: 168, schemaCode: 'et', text: 'Tenho muita dificuldade em aceitar um "não" como resposta quando quero algo das outras pessoas.' },
+  { id: 169, order: 169, schemaCode: 'et', text: 'Frequentemente fico com raiva ou irritado se não consigo o que quero.' },
+  { id: 170, order: 170, schemaCode: 'et', text: 'Sou especial e não deveria ter que aceitar muitas das restrições impostas às outras pessoas.' },
+  { id: 171, order: 171, schemaCode: 'et', text: 'Detesto ser limitado ou impedido de fazer o que quero.' },
+  { id: 172, order: 172, schemaCode: 'et', text: 'Sinto que não deveria ter que seguir as regras e convenções normais que as outras pessoas seguem.' },
+  { id: 173, order: 173, schemaCode: 'et', text: 'Sinto que o que tenho a oferecer tem mais valor do que as contribuições dos outros.' },
+  { id: 174, order: 174, schemaCode: 'et', text: 'Geralmente coloco minhas necessidades à frente das necessidades dos outros.' },
+  { id: 175, order: 175, schemaCode: 'et', text: 'Frequentemente percebo que estou tão envolvido com minhas próprias prioridades que não tenho tempo para dar aos amigos ou à família.' },
+  { id: 176, order: 176, schemaCode: 'et', text: 'As pessoas frequentemente me dizem que sou muito controlador em relação ao modo como as coisas são feitas.' },
+  { id: 177, order: 177, schemaCode: 'et', text: 'Fico muito irritado quando as pessoas não fazem o que peço.' },
+  { id: 178, order: 178, schemaCode: 'et', text: 'Não tolero que outras pessoas me digam o que fazer.' },
+
+  // ===== is — Autocontrole Insuficiente (179-193) =====
+  { id: 179, order: 179, schemaCode: 'is', text: 'Tenho muita dificuldade em conseguir parar de beber, fumar, comer em excesso ou outros comportamentos problemáticos.' },
+  { id: 180, order: 180, schemaCode: 'is', text: 'Parece que não consigo me disciplinar para concluir tarefas rotineiras ou entediantes.' },
+  { id: 181, order: 181, schemaCode: 'is', text: 'Frequentemente me permito agir por impulso e expressar emoções que me metem em problemas ou machucam outras pessoas.' },
+  { id: 182, order: 182, schemaCode: 'is', text: 'Se não consigo atingir um objetivo, fico facilmente frustrado e desisto.' },
+  { id: 183, order: 183, schemaCode: 'is', text: 'Tenho muita dificuldade em sacrificar a gratificação imediata para atingir um objetivo de longo prazo.' },
+  { id: 184, order: 184, schemaCode: 'is', text: 'Frequentemente acontece que, uma vez que começo a sentir raiva, simplesmente não consigo controlá-la.' },
+  { id: 185, order: 185, schemaCode: 'is', text: 'Tendo a exagerar nas coisas, mesmo sabendo que fazem mal para mim.' },
+  { id: 186, order: 186, schemaCode: 'is', text: 'Fico entediado com muita facilidade.' },
+  { id: 187, order: 187, schemaCode: 'is', text: 'Quando as tarefas ficam difíceis, geralmente não consigo perseverar e concluí-las.' },
+  { id: 188, order: 188, schemaCode: 'is', text: 'Não consigo me concentrar em nada por muito tempo.' },
+  { id: 189, order: 189, schemaCode: 'is', text: 'Não consigo me forçar a fazer coisas de que não gosto, mesmo quando sei que é para o meu próprio bem.' },
+  { id: 190, order: 190, schemaCode: 'is', text: 'Perco a paciência com a menor provocação.' },
+  { id: 191, order: 191, schemaCode: 'is', text: 'Raramente consegui manter minhas resoluções.' },
+  { id: 192, order: 192, schemaCode: 'is', text: 'Quase nunca consigo me conter de mostrar às pessoas como realmente me sinto, não importa qual seja o custo.' },
+  { id: 193, order: 193, schemaCode: 'is', text: 'Frequentemente faço coisas por impulso das quais me arrependo depois.' },
+
+  // ===== as — Busca de Aprovação/Reconhecimento (194-207) =====
+  { id: 194, order: 194, schemaCode: 'as', text: 'É importante para mim ser querido por quase todas as pessoas que conheço.' },
+  { id: 195, order: 195, schemaCode: 'as', text: 'Mudo a mim mesmo dependendo das pessoas com quem estou, para que gostem mais de mim.' },
+  { id: 196, order: 196, schemaCode: 'as', text: 'Esforço-me muito para me encaixar.' },
+  { id: 197, order: 197, schemaCode: 'as', text: 'Minha autoestima se baseia principalmente em como as outras pessoas me veem.' },
+  { id: 198, order: 198, schemaCode: 'as', text: 'Ter dinheiro e conhecer pessoas importantes faz com que eu me sinta uma pessoa de valor.' },
+  { id: 199, order: 199, schemaCode: 'as', text: 'Passo muito tempo cuidando da minha aparência física para que as pessoas me valorizem.' },
+  { id: 200, order: 200, schemaCode: 'as', text: 'Minhas conquistas têm mais valor para mim se outras pessoas as notarem.' },
+  { id: 201, order: 201, schemaCode: 'as', text: 'Estou tão focado em me encaixar que às vezes não sei quem sou.' },
+  { id: 202, order: 202, schemaCode: 'as', text: 'Acho difícil definir meus próprios objetivos sem levar em conta como os outros reagirão às minhas escolhas.' },
+  { id: 203, order: 203, schemaCode: 'as', text: 'Quando olho para as decisões da minha vida, vejo que tomei a maioria delas pensando na aprovação dos outros.' },
+  { id: 204, order: 204, schemaCode: 'as', text: 'Mesmo que eu não goste de alguém, ainda quero que essa pessoa goste de mim.' },
+  { id: 205, order: 205, schemaCode: 'as', text: 'A menos que receba muita atenção dos outros, sinto-me menos importante.' },
+  { id: 206, order: 206, schemaCode: 'as', text: 'Se faço comentários em uma reunião ou sou apresentado em um encontro social, espero receber reconhecimento e admiração.' },
+  { id: 207, order: 207, schemaCode: 'as', text: 'Muitos elogios e cumprimentos fazem com que eu me sinta uma pessoa de valor.' },
+
+  // ===== np — Negatividade/Pessimismo (208-218) =====
+  { id: 208, order: 208, schemaCode: 'np', text: 'Mesmo quando as coisas parecem estar indo bem, sinto que é apenas temporário.' },
+  { id: 209, order: 209, schemaCode: 'np', text: 'Se algo de bom acontece, preocupo-me que algo ruim provavelmente virá em seguida.' },
+  { id: 210, order: 210, schemaCode: 'np', text: 'Todo cuidado é pouco; quase sempre algo vai dar errado.' },
+  { id: 211, order: 211, schemaCode: 'np', text: 'Não importa o quanto eu trabalhe, preocupo-me que possa ficar financeiramente arruinado.' },
+  { id: 212, order: 212, schemaCode: 'np', text: 'Preocupo-me que uma decisão errada possa levar a um desastre.' },
+  { id: 213, order: 213, schemaCode: 'np', text: 'Frequentemente fico obcecado com decisões menores, porque as consequências de cometer um erro parecem tão sérias.' },
+  { id: 214, order: 214, schemaCode: 'np', text: 'Sinto-me melhor presumindo que as coisas não vão dar certo para mim, para não me decepcionar se derem errado.' },
+  { id: 215, order: 215, schemaCode: 'np', text: 'Foco mais nos aspectos negativos da vida e dos acontecimentos do que nos positivos.' },
+  { id: 216, order: 216, schemaCode: 'np', text: 'Tendo a ser pessimista.' },
+  { id: 217, order: 217, schemaCode: 'np', text: 'As pessoas próximas de mim me consideram uma pessoa preocupada.' },
+  { id: 218, order: 218, schemaCode: 'np', text: 'Se as pessoas ficam entusiasmadas demais com algo, fico desconfortável e sinto vontade de alertá-las sobre o que pode dar errado.' },
+
+  // ===== pu — Punitividade (219-232) =====
+  { id: 219, order: 219, schemaCode: 'pu', text: 'Se eu cometer um erro, mereço ser punido.' },
+  { id: 220, order: 220, schemaCode: 'pu', text: 'Se eu não me esforçar ao máximo, devo esperar sair perdendo.' },
+  { id: 221, order: 221, schemaCode: 'pu', text: 'Não há desculpa se eu cometer um erro.' },
+  { id: 222, order: 222, schemaCode: 'pu', text: 'Pessoas que não "fazem a sua parte" deveriam ser punidas de alguma forma.' },
+  { id: 223, order: 223, schemaCode: 'pu', text: 'Na maioria das vezes, não aceito as desculpas que as outras pessoas dão. Elas simplesmente não estão dispostas a assumir responsabilidade e arcar com as consequências.' },
+  { id: 224, order: 224, schemaCode: 'pu', text: 'Se eu não fizer o trabalho, devo sofrer as consequências.' },
+  { id: 225, order: 225, schemaCode: 'pu', text: 'Frequentemente penso nos erros que cometi e sinto raiva de mim mesmo.' },
+  { id: 226, order: 226, schemaCode: 'pu', text: 'Quando as pessoas fazem algo ruim, tenho dificuldade em aplicar a frase "perdoar e esquecer".' },
+  { id: 227, order: 227, schemaCode: 'pu', text: 'Guardo rancor, mesmo depois que alguém se desculpa.' },
+  { id: 228, order: 228, schemaCode: 'pu', text: 'Fico chateado quando acho que alguém foi "poupado" com facilidade demais.' },
+  { id: 229, order: 229, schemaCode: 'pu', text: 'Fico com raiva quando as pessoas arranjam desculpas para si mesmas ou culpam outras pessoas pelos seus problemas.' },
+  { id: 230, order: 230, schemaCode: 'pu', text: 'Não importa por que cometo um erro; quando faço algo errado, devo pagar o preço.' },
+  { id: 231, order: 231, schemaCode: 'pu', text: 'Eu me "machuco" muito por causa das coisas que estrago.' },
+  { id: 232, order: 232, schemaCode: 'pu', text: 'Sou uma pessoa má que merece ser punida.' }
+];
+
+// ============================================
+// Versão Longa do Quiz (YSQ-L3)
+// ============================================
+
+export const quizVersionLong: QuizVersion = {
+  id: 'long-v1',
+  name: 'Versão Estendida (YSQ-L3)',
+  description: '232 questões, aproximadamente 60 minutos',
+  totalQuestions: 232,
+  questions: questionsLong
+};

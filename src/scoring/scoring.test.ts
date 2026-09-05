@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { computeSchemaScores, computeDomainScores, computeQuizResult, interpretLevel } from './scoring';
-import { Answer } from '../types';
+import { Answer, Question } from '../types';
 
 describe('interpretLevel', () => {
   it('deve classificar scores corretamente', () => {
@@ -144,5 +144,36 @@ describe('computeQuizResult', () => {
 
     const result = computeQuizResult(answers, 'short-v1');
     expect(result.totalMean).toBe(4.0); // (2+4+6)/3
+  });
+
+  it('deve funcionar com número variável de itens por schema (versão longa)', () => {
+    // Simular versão longa: ed tem 9 itens (1-9), ab tem 17 itens (10-26)
+    const questions: Question[] = [
+      { id: 1, order: 1, text: 'Q1', schemaCode: 'ed' },
+      { id: 2, order: 2, text: 'Q2', schemaCode: 'ed' },
+      { id: 3, order: 3, text: 'Q3', schemaCode: 'ed' },
+      { id: 4, order: 4, text: 'Q4', schemaCode: 'ab' },
+      { id: 5, order: 5, text: 'Q5', schemaCode: 'ab' },
+    ];
+
+    const answers: Answer[] = [
+      { questionId: 1, value: 4 },
+      { questionId: 2, value: 4 },
+      { questionId: 3, value: 4 },
+      { questionId: 4, value: 2 },
+      { questionId: 5, value: 2 },
+    ];
+
+    const scores = computeSchemaScores(answers, questions);
+    const edScore = scores.find(s => s.code === 'ed');
+    const abScore = scores.find(s => s.code === 'ab');
+
+    expect(edScore).toBeDefined();
+    expect(edScore!.mean).toBe(4.0); // (4+4+4)/3
+    expect(edScore!.items).toEqual([1, 2, 3]);
+
+    expect(abScore).toBeDefined();
+    expect(abScore!.mean).toBe(2.0); // (2+2)/2
+    expect(abScore!.items).toEqual([4, 5]);
   });
 });

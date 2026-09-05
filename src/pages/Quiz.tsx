@@ -55,7 +55,7 @@ export function Quiz() {
     }));
 
     // Calcular resultado
-    const result = computeQuizResult(answerList, versionId);
+    const result = computeQuizResult(answerList, versionId, questions);
 
     // Salvar no histórico
     saveEvaluation(result);

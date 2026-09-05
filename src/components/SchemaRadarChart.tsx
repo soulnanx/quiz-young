@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { SchemaScore } from '../types';
 import { RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, ResponsiveContainer, Tooltip } from 'recharts';
-import { formatScore, getLevelLabel, getLevelColor } from '../lib/utils';
+import { formatScore, getLevelColor } from '../lib/utils';
 
 interface SchemaRadarChartProps {
   schemas: SchemaScore[];

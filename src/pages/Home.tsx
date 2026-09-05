@@ -131,46 +131,52 @@ export function Home() {
             </Link>
 
             {/* Versão Estendida */}
-            <div className="bg-gray-50 rounded-2xl border-2 border-gray-200 p-8 opacity-75">
+            <Link
+              to="/quiz?version=long-v1"
+              className="group bg-white rounded-2xl shadow-lg border-2 border-indigo-100 hover:border-indigo-300 p-8 transition-all hover:shadow-xl hover:-translate-y-1"
+            >
               <div className="flex items-start justify-between mb-6">
-                <div className="w-16 h-16 bg-gray-300 rounded-2xl flex items-center justify-center">
-                  <svg className="w-10 h-10 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                <div className="w-16 h-16 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-2xl flex items-center justify-center shadow-lg">
+                  <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                   </svg>
                 </div>
-                <span className="bg-gray-200 text-gray-600 text-xs font-bold px-3 py-1 rounded-full">
-                  EM BREVE
+                <span className="bg-indigo-100 text-indigo-700 text-xs font-bold px-3 py-1 rounded-full">
+                  COMPLETO
                 </span>
               </div>
               
-              <h3 className="text-2xl font-bold text-gray-700 mb-3">Versão Estendida</h3>
-              <p className="text-gray-500 font-semibold mb-4">YSQ-L3</p>
+              <h3 className="text-2xl font-bold text-gray-900 mb-3">Versão Estendida</h3>
+              <p className="text-indigo-600 font-semibold mb-4">YSQ-L3</p>
               
               <div className="space-y-3 mb-6">
-                <div className="flex items-center gap-3 text-gray-500">
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="flex items-center gap-3 text-gray-600">
+                  <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                   </svg>
                   <span className="text-sm">232 questões</span>
                 </div>
-                <div className="flex items-center gap-3 text-gray-500">
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="flex items-center gap-3 text-gray-600">
+                  <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                   <span className="text-sm">~60 minutos</span>
                 </div>
-                <div className="flex items-center gap-3 text-gray-500">
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="flex items-center gap-3 text-gray-600">
+                  <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
-                  <span className="text-sm">Avaliação detalhada</span>
+                  <span className="text-sm">Avaliação clínica detalhada</span>
                 </div>
               </div>
               
-              <div className="flex items-center justify-center gap-2 bg-gray-300 text-gray-500 py-3 px-6 rounded-xl font-semibold cursor-not-allowed">
-                Indisponível
+              <div className="flex items-center justify-center gap-2 bg-gradient-to-r from-indigo-600 to-indigo-700 text-white py-3 px-6 rounded-xl font-semibold group-hover:from-indigo-700 group-hover:to-indigo-800 transition-all">
+                Iniciar Avaliação
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
               </div>
-            </div>
+            </Link>
           </div>
         </section>
 

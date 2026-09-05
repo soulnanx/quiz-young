@@ -63,12 +63,13 @@ export function Result() {
               <h1 className="text-2xl md:text-3xl font-bold mb-2">Resultado da Avaliação</h1>
               <div className="text-blue-100 text-sm">{formatDate(result.answeredAt)}</div>
             </div>
-            <div className="flex items-center gap-6">
-              <div className="text-center">
+            <div className="flex items-center gap-4 md:gap-8">
+              <div className="flex-1 text-center">
                 <div className="text-4xl md:text-5xl font-bold">{formatScore(result.totalMean)}</div>
                 <div className="text-blue-100 text-sm">Score Total</div>
               </div>
-              <div className="text-center">
+              <div className="w-px h-12 bg-blue-400 opacity-40 hidden md:block" />
+              <div className="flex-1 text-center">
                 <div className="text-4xl md:text-5xl font-bold">{significantSchemas.length}</div>
                 <div className="text-blue-100 text-sm">Esquemas Significativos</div>
               </div>

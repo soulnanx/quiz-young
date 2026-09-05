@@ -1,4 +1,5 @@
 import { Question, SchemaCode, SchemaMeta, DomainName, QuizVersion } from '../types';
+import { quizVersionLong } from './questions-long';
 
 // ============================================
 // Metadados dos 18 Esquemas
@@ -267,8 +268,8 @@ export const quizVersions: Record<string, QuizVersion> = {
     description: '90 questões, aproximadamente 20 minutos',
     totalQuestions: 90,
     questions: questions
-  }
-  // Futuro: adicionar 'long-v1' aqui
+  },
+  'long-v1': quizVersionLong
 };
 
 // ============================================

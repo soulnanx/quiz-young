@@ -1,4 +1,4 @@
-import { Answer, SchemaScore, DomainScore, QuizResult, SchemaCode, ScoreLevel } from '../types';
+import { Answer, SchemaScore, DomainScore, QuizResult, SchemaCode, ScoreLevel, Question } from '../types';
 import { schemasMeta, getDomains } from '../data/questions';
 
 // ============================================
@@ -18,8 +18,9 @@ export function interpretLevel(mean: number): ScoreLevel {
 
 /**
  * Calcula scores para cada um dos 18 esquemas
+ * Aceita questions para mapear questão→schema (funciona com versão curta e longa)
  */
-export function computeSchemaScores(answers: Answer[]): SchemaScore[] {
+export function computeSchemaScores(answers: Answer[], questions?: Question[]): SchemaScore[] {
   // Agrupar respostas por schema
   const schemaAnswers = new Map<SchemaCode, { items: number[]; values: number[] }>();
 
@@ -31,7 +32,17 @@ export function computeSchemaScores(answers: Answer[]): SchemaScore[] {
   // Preencher com as respostas
   answers.forEach(answer => {
     const questionId = answer.questionId;
-    const schemaCode = getSchemaCodeForQuestion(questionId);
+    let schemaCode: SchemaCode;
+    
+    if (questions) {
+      // Usar mapeamento explícito das questões
+      const question = questions.find(q => q.id === questionId);
+      schemaCode = question?.schemaCode ?? getSchemaCodeForQuestion(questionId);
+    } else {
+      // Fallback para versão curta (padrão X, X+18, X+36...)
+      schemaCode = getSchemaCodeForQuestion(questionId);
+    }
+    
     const data = schemaAnswers.get(schemaCode)!;
     data.items.push(questionId);
     data.values.push(answer.value);
@@ -87,8 +98,8 @@ export function computeDomainScores(schemas: SchemaScore[]): DomainScore[] {
 /**
  * Calcula o resultado completo do quiz
  */
-export function computeQuizResult(answers: Answer[], versionId: string): QuizResult {
-  const schemas = computeSchemaScores(answers);
+export function computeQuizResult(answers: Answer[], versionId: string, questions?: Question[]): QuizResult {
+  const schemas = computeSchemaScores(answers, questions);
   const domains = computeDomainScores(schemas);
   const totalMean = answers.length > 0
     ? answers.reduce((sum, a) => sum + a.value, 0) / answers.length
