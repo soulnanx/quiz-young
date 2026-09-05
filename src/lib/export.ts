@@ -1,11 +1,55 @@
 import { QuizResult } from '../types';
 import { jsPDF } from 'jspdf';
 import { formatScore, formatDate, getLevelLabel } from '../lib/utils';
-import { quizVersions } from '../data/questions';
+import { quizVersions, schemasMeta } from '../data/questions';
 
 // ============================================
 // Exportação de Resultados
 // ============================================
+
+const CSV_META_CODES = Object.values(schemasMeta).map(m => m.code);
+
+/**
+ * Gera CSV largo (pt-BR, Excel) de um resultado.
+ * Colunas dos schemas seguem a ordem de `schemasMeta`, não a de `result.schemas`.
+ */
+export function buildCsv(result: QuizResult): string {
+  const header = ['id', 'data', 'versao', 'score_total', ...CSV_META_CODES].join(';');
+  if (result.schemas.length === 0) {
+    return '\uFEFF' + header;
+  }
+
+  const byCode = new Map(result.schemas.map(s => [s.code, s]));
+  const row = [
+    result.id,
+    formatDate(result.answeredAt),
+    result.versionId,
+    formatScore(result.totalMean),
+    ...CSV_META_CODES.map(code => {
+      const schema = byCode.get(code);
+      return schema ? formatScore(schema.mean) : '';
+    })
+  ].join(';');
+
+  return '\uFEFF' + header + '\n' + row;
+}
+
+/**
+ * Exporta resultado como CSV (download inline)
+ */
+export function exportAsCsv(result: QuizResult): void {
+  const filename = `quiz-young-${result.id}.csv`;
+  const csv = buildCsv(result);
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
 
 /**
  * Exporta resultado como JSON

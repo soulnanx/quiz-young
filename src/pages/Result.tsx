@@ -3,7 +3,7 @@ import { QuizResult } from '../types';
 import { ResultCard } from '../components/ResultCard';
 import { DomainBar } from '../components/DomainBar';
 import { SchemaRadarChart } from '../components/SchemaRadarChart';
-import { exportAsJson, exportAsPdf } from '../lib/export';
+import { exportAsJson, exportAsPdf, exportAsCsv } from '../lib/export';
 import { formatScore, formatDate } from '../lib/utils';
 
 export function Result() {
@@ -27,6 +27,10 @@ export function Result() {
 
   const handleExportJson = () => {
     exportAsJson(result);
+  };
+
+  const handleExportCsv = () => {
+    exportAsCsv(result);
   };
 
   const handleExportPdf = () => {
@@ -78,7 +82,7 @@ export function Result() {
         </div>
 
         {/* Botões de ação compactos */}
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
           <button
             onClick={handleExportPdf}
             className="px-4 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors font-medium flex items-center justify-center gap-2 text-sm"
@@ -94,6 +98,14 @@ export function Result() {
             <span>📋</span>
             <span className="hidden sm:inline">Exportar JSON</span>
             <span className="sm:hidden">JSON</span>
+          </button>
+          <button
+            onClick={handleExportCsv}
+            className="px-4 py-3 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors font-medium flex items-center justify-center gap-2 text-sm"
+          >
+            <span>📊</span>
+            <span className="hidden sm:inline">Exportar CSV</span>
+            <span className="sm:hidden">CSV</span>
           </button>
           <button
             onClick={handleNewEvaluation}
