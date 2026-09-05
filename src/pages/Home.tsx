@@ -94,11 +94,11 @@ export function Home() {
             <div className="text-xs text-gray-600">Domínios</div>
           </div>
           <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 text-center">
-            <div className="text-3xl font-bold text-blue-600 mb-1">90</div>
-            <div className="text-xs text-gray-600">Questões</div>
+            <div className="text-3xl font-bold text-blue-600 mb-1">3</div>
+            <div className="text-xs text-gray-600">Versões</div>
           </div>
           <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4 text-center">
-            <div className="text-3xl font-bold text-blue-600 mb-1">20</div>
+            <div className="text-3xl font-bold text-blue-600 mb-1">20-60</div>
             <div className="text-xs text-gray-600">Minutos</div>
           </div>
         </div>
@@ -112,7 +112,7 @@ export function Home() {
             Nova Avaliação
           </h2>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {/* Versão Curta */}
             <Link
               to="/quiz?version=short-v1"
@@ -202,6 +202,54 @@ export function Home() {
               </div>
               
               <div className="flex items-center justify-center gap-2 bg-gradient-to-r from-indigo-600 to-indigo-700 text-white py-3 px-6 rounded-xl font-semibold group-hover:from-indigo-700 group-hover:to-indigo-800 transition-all">
+                Iniciar Avaliação
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
+              </div>
+            </Link>
+
+            {/* Versão Intermediária */}
+            <Link
+              to="/quiz?version=medium-v1"
+              className="group bg-white rounded-2xl shadow-lg border-2 border-purple-100 hover:border-purple-300 p-8 transition-all hover:shadow-xl hover:-translate-y-1"
+            >
+              <div className="flex items-start justify-between mb-6">
+                <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-lg">
+                  <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                  </svg>
+                </div>
+                <span className="bg-purple-100 text-purple-700 text-xs font-bold px-3 py-1 rounded-full">
+                  INTERMEDIÁRIO
+                </span>
+              </div>
+              
+              <h3 className="text-2xl font-bold text-gray-900 mb-3">Versão Intermediária</h3>
+              <p className="text-purple-600 font-semibold mb-4">YSQ-200</p>
+              
+              <div className="space-y-3 mb-6">
+                <div className="flex items-center gap-3 text-gray-600">
+                  <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                  <span className="text-sm">200 questões</span>
+                </div>
+                <div className="flex items-center gap-3 text-gray-600">
+                  <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <span className="text-sm">~45 minutos</span>
+                </div>
+                <div className="flex items-center gap-3 text-gray-600">
+                  <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <span className="text-sm">Equilíbrio entre rapidez e profundidade</span>
+                </div>
+              </div>
+              
+              <div className="flex items-center justify-center gap-2 bg-gradient-to-r from-purple-600 to-purple-700 text-white py-3 px-6 rounded-xl font-semibold group-hover:from-purple-700 group-hover:to-purple-800 transition-all">
                 Iniciar Avaliação
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />

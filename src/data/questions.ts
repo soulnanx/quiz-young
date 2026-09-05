@@ -1,5 +1,6 @@
 import { Question, SchemaCode, SchemaMeta, DomainName, QuizVersion } from '../types';
 import { quizVersionLong } from './questions-long';
+import { quizVersion200 } from './questions-200';
 
 // ============================================
 // Metadados dos 18 Esquemas
@@ -269,6 +270,7 @@ export const quizVersions: Record<string, QuizVersion> = {
     totalQuestions: 90,
     questions: questions
   },
+  'medium-v1': quizVersion200,
   'long-v1': quizVersionLong
 };
 
