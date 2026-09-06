@@ -296,7 +296,21 @@ export function Quiz() {
     <div className="min-h-screen bg-gray-50">
       <header className="bg-white shadow-sm sticky top-0 z-10">
         <div className="max-w-7xl mx-auto px-4 py-4">
-          <ProgressBar current={currentIndex + 1} total={totalQuestions} />
+          {/* Sair não perde progresso: rascunho é salvo automaticamente a cada resposta */}
+          <div className="flex items-center gap-4">
+            <div className="flex-1">
+              <ProgressBar current={currentIndex + 1} total={totalQuestions} />
+            </div>
+            <button
+              onClick={() => navigate('/')}
+              className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l9-9 9 9M5 10v10h5v-6h4v6h5V10" />
+              </svg>
+              Sair
+            </button>
+          </div>
         </div>
       </header>
 
