@@ -6,7 +6,7 @@ import { importEvaluation } from '../lib/import';
 import { formatDate, formatScore } from '../lib/utils';
 import { quizVersions } from '../data/questions';
 
-const APP_VERSION = '1.2.0';
+const APP_VERSION = '1.2.1';
 
 export function Home() {
   const navigate = useNavigate();
